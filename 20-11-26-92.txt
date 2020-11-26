@@ -1,0 +1,198 @@
+﻿1.결합방향과 우선순위에 대하여 설명하시오.
+
+ 결합방향에는 여러가지가 있는데 대입연산자 같은 경우는 오른쪽에서 왼쪽으로 하는 것이고 
+ 사칙연산에서 우선순위가 생길 경우 우선해야 하는 괄호라던지 곱하기, 나누기 등을 먼저 시행하고 우선순위가 같을 경우에는 왼쪽에서 오른쪽으로 행한다.
+ 
+
+2.1 초과 100 미만인가? 를 코딩을 하게 되면?
+
+public class Hello {
+	public static void main (String [] args) {
+		
+		int n1 = 95;
+		boolean result = (n1 > 1) && (n1 < 100);
+		
+		System.out.println(result);
+		
+	}//main end
+}//class end
+
+코딩결과 : true
+
+3.2의 배수 또는 3의 배수? 를 코딩을 하게 되면?
+
+public class Hello {
+	public static void main (String [] args) {
+		
+		int n1 = 95;
+		boolean result = (n1 % 2 == 0) || (n1 % 3 == 0);
+		
+		System.out.println(result);
+		
+	}//main end
+}//class end
+
+코딩 결과 : false
+
+4. && 와  || 설명하시오.
+
+ &&와 || 은 관계연산자로 결과 값은 true나 flase 값으로 나오는데 
+ && : 둘다 참인 경우에만 참
+ || : 하나만 참이어도 참
+
+5. 아래의 프린트 결과를 예측해 보고, 코딩후 결과를 확인하시오
+
+class SCE {
+    public static void main(String[] args) {
+        int num1 = 0; 
+        int num2 = 0;
+        boolean result;
+        
+        result = ((num1 += 10) < 0) && ((num2 += 10) > 0);   // 첫 번째로 num1이 10이 증가하게 되고 그래서 관계연산 값이 false가 나와서 뒤의 연산을 하지 않는다.
+        System.out.println("result = " + result);                        //그래서 num1 이 10이어서 false이므로 결과도 false
+        System.out.println("num1 = " + num1);                        //num1 은 10이 되고
+        System.out.println("num2 = " + num2 + '\n');               //num2 는 연산을 시행하지 않아 그대로 0이다.
+		
+        result = ((num1 += 10) > 0) || ((num2 += 10) > 0);    //여기서도 num1이 10이 증가하게 되고 그래서 관계연산 값이 true가 나와서 뒤의 연산을 하지 않는다.
+        System.out.println("result = " + result);                        //그래서 결과도 true 이고
+        System.out.println("num1 = " + num1);		     //num1은 20이 되고
+        System.out.println("num2 = " + num2);		     //num2 는 연산을 시행하지 않아 그대로 0이다.
+    }
+}
+
+코딩 결과 :
+result = false
+num1 = 10
+num2 = 0
+
+result = true
+num1 = 20
+num2 = 0
+
+
+6.아래가 에러가 나는 이유를 설명하고, 수정하시오.
+
+short num1 
+short num = -num 
+
+변수선언에서 초기화를 제대로 해주지 않았고
+변수를 선언 했다면 앞에 그 다음 변수를 사용할 때에는 타입 적지 않고 사용하고 
+num 값을 음수로 바꿀 때 부호 - 를 붙이는 것을 실질적으로 -1을 곱하는 것과 같아 int로 연산되어 형이 맞지 않게 되므로 형 변환을 해주어야 한다.
+
+short num = 1;
+num = (short)-num;
+
+
+7.전위증가 연산자와 후위증가 연산자의 차이는?
+ 전위증가 연산자 : ++a
+ 후위증가 연산자 : a++
+ 전위증가 연산자는 증가연산을 맨 먼저 시행을 한다. 
+ 후위증가 연산자는 한가지 실행단위를 끝낸 후 증가연산을 한다. 
+ 예시)
+public class Hello {
+	public static void main(String[] args) {
+	   
+		int num1 = 1; 		
+		System.out.println(++num1 + 5);
+		
+		int num2 = 1;
+		System.out.println(num2++ + 5);
+		
+	}//main end
+}//class end
+
+8.아래의 비트연산자 4가지를 설명하시오.
+   - & : 2진수 값에서 같은 자리의 값이 둘다 1이면 1 아니면 0으로 바꾸는 연산자
+   - ^ : 2진수 값에서 같은 자리의 값이 같은면 0 다르면 1 로 바꾸는 연산자
+   - | : 2진수 값에서 같은 자리의 값이 하나라도 1이면 1로 바꾸는 연산자
+   - ~ : 2진수 값에서 값이 1이면 0 , 0 이면 1 로 바꾸는 연산자 
+
+9.아래의 쉬프트 연산자에 대하여 설명하시오.
+   - << : 2진수 값에서 자리를 왼쪽으로 이동시키는 연사자이고 2배가 된다.
+   - >> : 2진수 값에서 자리를 오른쪽으로 옮기는 연산자이고 2 나눈 값이 된다.
+
+10.전위연산자와 후위연산자에 대하여 설명하시오.
+
+   - 전위연산자 : ++a , --a
+   - 후위연산자 : a++, a--
+   - 증가 연산자는 a = a + 1 을 뜻하고
+   - 감소 연산자는 a = a - 1 을 뜻한다.
+   - 연산을 하는 순서가 조금 다를 뿐이다. 
+
+11.아래의 출력값을 예측하시오.
+class AssignSteResult {
+    public static void main(String[] args) {
+        int num1 = 10, num2 = 20, num3 = 30;
+        num1 = num2 = num3;
+
+        /*
+          = 연산자는 결합 방향이 오른쪽에서 왼쪽으로 진행된다. 
+          따라서 위의 문장은 다음과 같다. 
+          num1 = (num2 = num3);        
+        */
+        
+        System.out.println(num1);	
+        System.out.println(num2);
+        System.out.println(num3);
+    }
+}
+
+   대입 연산자의 결합 방향은 왼쪽에서 오른쪽이므로 
+   첫 번째로 num3 값이 num2로 먼저 대입이 되어 num2 가 30 이 되고 
+   두 번째로 num2 값이 num1을 대입되어 num1도 30이 된다.
+코딩 결과 :
+30
+30
+30 
+    
+12.아래의 출력값을 예측하시오.
+class SCE {
+    public static void main(String[] args) {
+        int num1 = 0; 
+        int num2 = 0;
+        boolean result;
+
+        num1 += 10; //여기서 증가로 num1 = 10
+        num2 += 10; //여기서 증가로 num2 = 10       
+        result = (num1 < 0) && (num2 > 0); //결과 num1이 0보다 크므로 false
+
+        System.out.println("result = " + result); //false
+        System.out.println("num1 = " + num1); //10
+        System.out.println("num2 = " + num2 + '\n');//10
+		
+        num1 += 10; //여기서 증가로 num1 = 20
+        num2 += 10; //여기서 증가로 num2 = 20
+        result = (num1 > 0) || (num2 > 0); //num1 이 0 보다 크므로 true
+
+        System.out.println("result = " + result); //true
+        System.out.println("num1 = " + num1);//20
+        System.out.println("num2 = " + num2);//20
+    }
+}
+코딩 결과 : 
+result = false
+num1 = 10
+num2 = 10
+
+result = true
+num1 = 20
+num2 = 20
+
+13.아래의 출력값을 예측하시오.
+class AddNum {
+    public static void main(String[] args) {
+        int result = 3 + 6;
+        System.out.println("3 + 6 = " + result); //3 + 6 으로 값은 9
+        
+        result += 9; //9증가로 18
+        System.out.println("3 + 6 + 9 = " + result);
+        
+        result += 12;//12증가로 30
+        System.out.println("3 + 6 + 9 + 12 = " + result);
+    }
+}
+
+코딩 결과 :
+3 + 6 = 9
+3 + 6 + 9 = 18
+3 + 6 + 9 + 12 = 30
