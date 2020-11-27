@@ -1,0 +1,304 @@
+﻿1.조건문의 3가지 종류를 나열하고 설명하시오.
+
+  : 세가지 조건문의 기본은 참인경우 중괄호 안의 문장을 실행한다는 것이다.
+   - if문 : 
+	if(boolean){
+		조건이 참일 경우 실행할 문장
+	}
+
+   - if ~ else 문 : 이 조건문은 if 문이든 else 문이든 반드시 한가지는 실행된다.
+	if(boolean){
+		조건이 참일 경우 실행할 문장
+	}else{
+		조건이 거짓일 경우 실행할 문장
+	}
+
+   - else if 문 : 
+	if(boolean){
+		조건이 참일 경우 실행할 문장 /거짓이면 밑으로 내려간다.
+	}else if(boolean){
+		조건이 참일 경우 실행할 문장
+	}else{
+		조건이 거짓일 경우 실행할 문장 /위의 조건이 다 거짓이면 else 문장이 샐행된다.
+	}
+
+2.아래의 프로그램을 짜시오.
+
+ - 국어:80 수학:80 영어:60        	
+   총점과 평균을 출력하고, 
+   평균에 따른 수우미양가를 출력하시오.
+public class Hello {
+	public static void main(String[] args) {
+
+		int kor = 80;
+		int math = 80;
+		int eng = 60;
+		int total = kor + math + eng;
+		double avg = total/3.0; //소수점 아래가 나올 수 있도록 한다.
+		
+		System.out.println("총점은 " + total);
+		System.out.println("평균은 " + avg);
+		
+		if(avg >= 90) {
+			System.out.println("수입니다.");
+		}else if(avg >= 80) {
+			System.out.println("우입니다.");
+		}else if(avg >= 70) {
+			System.out.println("미입니다.");
+		}else if(avg >= 60) {
+			System.out.println("양입니다.");
+		}else {
+			System.out.println("가입니다.");
+		}
+		
+	}//main end
+}//class end
+
+ - int num = 33 할당후 해당 숫자 짝수면 짝수 입니다 출력. 
+홀수면 홀수 출력
+public class Hello {
+	public static void main(String[] args) {
+		
+		int num = 33;
+		
+		if(num % 2 == 0) {
+			System.out.println(num + " 은 짝수입니다.");
+		}else {
+			System.out.println(num + " 은 홀수입니다.");
+		}
+		
+	}//main end
+}//class end
+
+ - int num = 66 할당후, 2의 배수 이고 3의 배수이면, 해당 수를 출력하고, 아니면  2의 배수 이고 3의 배수 가 아닙니다 출력.
+public class Hello {
+	public static void main(String[] args) {
+		int num = 66;
+		
+		if((num % 2 == 0) && ( num % 3 == 0)) {
+			System.out.println(num + " 은 2의 배수이고 3의 배수입니다.");
+		}else {
+			System.out.println(num + " 2의 배수이고 3의 배수가 아닙니다.");
+		}
+		
+	}//main end
+}//class end 
+
+-80, 33 ,55 = 최대값을 출력하시오.
+public class Hello {
+	public static void main(String[] args) {
+		int num1 = 80;
+		int num2 = 33;
+		int num3 = 55;
+		
+		if(num1 > num2 && num1 > num3) {
+			System.out.println(num1);
+		}else if( num2 > num1 && num2 > num3) {
+			System.out.println(num2);
+		}else {
+			System.out.println(num3);
+		}
+		
+	}//main end
+}//class end
+
+3.아래를 삼항연산자를 사용하여 프로그래밍 하시오.
+
+-80, 33 ,55 = 최대값을 출력하시오.
+public class Hello {
+	public static void main(String[] args) {
+
+		int num1 = 80;
+		int num2 = 33;
+		int num3 = 55;
+		int max;
+
+		max = num1 > num2 ? num1 : num2;
+		max = max > num3 ? max : num3;
+
+		System.out.println(max);
+		
+	}//main end
+}//class end
+
+
+4.switch 문에서 '걸어서 하늘까지' 를 설명하시오.
+
+   : switch문에서는 해당하는 값이 걸리면 걸린 곳 부터 break까지가 다 시행되고 beak가 없으면 끝까지 실행된다.
+
+5.아래를 프로그래밍 하시오.
+
+- int num = -10 을 할당후 해당 정수에 대한 절대값을 출력하는 프로그램을 작성하시오.
+public class Hello {
+	public static void main(String[] args) {
+
+		int num = -10;
+		
+		if(num >= 0) {
+			System.out.println(num);
+		}else{
+			System.out.println(num *(-1));
+		}
+		
+	}//main end
+}//class end
+
+6.반복문에서 while 문과 do while 문의 차이는?
+
+   : while 문과 do while문의 조건식이 while은 시행문 전에 오고 do while은 새행문 후에 온다.
+     그래서 do while은 반드시 한번은 시행을 하게 되어 있다. 
+
+7.for 문에서 for 문이 실행되는 순서를 설명하시오.
+
+  for문의 형식 :
+  for(초기화 ; 조건식 ; 증감식){ 
+	반복 시행할 문장
+  }
+  이 때 순서는 초기화 -> 조건식(true) -> 반복문-> 증감식
+                            -> 조건식(true) -> 반복문 -> 증감식
+		 ->계속 반복하다가
+                            ->조건식(false) -> 빠져나감
+
+8. 9단을 출력하는 프로그램을 만드시오.(while 문 사용할것)
+
+public class Hello {
+	public static void main(String[] args) {
+
+		int dan = 9;
+		int i = 1;
+		while(i <10) {
+			System.out.println(dan + " x "+ i + " = " + (dan * i));
+			i++;
+		}
+			
+	}//main end
+}//class end
+
+9.1부터 100까지의 합을 구하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+
+		int sum = 0;
+		for(int i = 1; i <= 100; i++) {
+			sum += i;
+		}
+		System.out.println("합은 " + sum);
+		
+	}//main end
+}//class end
+
+10.1부터 100까지의 홀수들의 합을 구하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+
+		int sum = 0;
+		for(int i = 1; i <= 100; i += 2) {
+			sum += i;
+		}
+		System.out.println("홀수의 합은 " + sum);
+		
+	}//main end
+}//class end
+
+11.반복문에서의 break 와 continue 를 설명하시오.
+
+ : 반복문에서 break문은 참이 되면 반복문을 시행하고 break있는 곳에서 반복문을 빠져나온다. 
+   하지만 countinue 는 참이 되면 다시 조건식으로 돌아간다.
+
+
+12. 아래를 프로그래밍 하시오.
+
+  - 1과 1000 사이의 숫자중 3의 배수 이자 5의 배수인 첫번재 수는?
+public class Hello {
+	public static void main(String[] args) {
+//		- 1과 1000 사이의 숫자중 3의 배수 이자 5의 배수인 첫번재 수는??
+		
+		for(int i = 1; i <= 1000; i++) {
+			if(((i % 3) == 0) && ((i % 5) == 0)) {
+				System.out.println(i);
+				break;
+			}
+		}
+		
+		
+	}//main end
+}//class end
+
+  - 1과 1000 사이의 숫자중 2의 배수 이자 3의 배수인 수는 모두 몇개인가?
+public class Hello {
+	public static void main(String[] args) {
+		
+		int count = 0;
+		for(int i = 1; i <= 1000; i++) {
+			if(((i % 3) != 0) || ((i % 5) != 0)) {
+				continue;
+			}
+			count++;
+		}
+		System.out.println(count);
+		
+	}//main end
+}//class end
+
+
+13.화폐매수 구하기?
+
+=126500 의 금액을 한국화폐으로 바꾸었을 때 각각 몇 개의 화폐가 필요한지 계산해서 출력하라.
+예) int 126500;
+   오만원 : 2장	
+   만원:    2장
+   오천원짜리 :1장
+   천원짜리: 1
+   오백원짜리 1개
+   백원짜리 0개
+public class Hello {
+	public static void main(String[] args) {
+		
+		int num = 126500;
+		
+		System.out.println("오만원 	: "+ num/50000+"장");
+		num = num % 50000;
+		System.out.println("만원 	: "+ num/10000 +"장");
+		num = num % 10000;
+		System.out.println("오천원 	: "+ num/5000 +"장");
+		num = num % 5000;
+		System.out.println("천원 	: "+ num/1000 +"장");
+		num = num % 1000;
+		System.out.println("오백원 	: "+ num/500 +"개");
+		num = num % 500;
+		System.out.println("백원 	: "+ num/100 +"개");
+		
+	}//main end
+}//class end
+
+코딩 결과 :
+돈 126500 은
+오만원 	: 2장
+만원 	: 2장
+오천원 	: 1장
+천원 	: 1장
+오백원 	: 1개
+백원 	: 0개
+필요하다.
+
+//금일 연습 프로그래밍 내용(프로그래밍 한번씩 짜보도록 합니다)
+
+        /*
+         1. 국어:80 수학:80 영어:60        	
+        	총점과 평균을 출력하고, 평균에 따른 수우미양가를 출력하시오.
+         2. int num = 33 할당후 해당 숫자 짝수면 짝수 입니다 출력. 홀수면 홀수 출력
+         3. int num = 66 할당후, 2의 배수 이고 3의 배수이면, 해당 수를 출력하고, 
+         아니면  2의 배수 이고 3의 배수 가 아닙니다 출력.
+		 4. 80 , 33 ,55 = 최대값을 출력하시오.
+		 5. 1-6 까지의 임의의 정수를 뽑아서 몇번이 나왔는지 맞추는 게임	
+		 7. int dan  = 3;  구구단 출력
+		 8. 1부터 100까지의 합을 구하시오.
+		 9. 1부터 100까지의 짝수의 합 구하시오.
+		 10.영희가 은행에 500원(원금)을 입금했다. 
+		 하루에 1원씩 이자가 붙는다.
+		 5일 후(일수) 잔액은 얼마가 되어 있을까?
+        */
+ 
+
