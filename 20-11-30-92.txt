@@ -1,0 +1,336 @@
+﻿1.반복문 3가지의 무한루프 만드는 방법은?
+
+   - for 문 : 안에 조건식을 쓰지 않으면 된다.
+public class Hello {
+	public static void main(String[] args) {
+	
+		for( ; ; ) {
+			System.out.println('*');
+		}
+	}
+	
+}//class end
+ 
+  - while 문 : 증감식을 적지 않으면 된다.
+public class Hello {
+	public static void main(String[] args) {
+		int i = 1;
+		while( i <= 10) {
+			System.out.println('*');
+		}
+	}
+	
+}//class end
+ 
+   - do while문 : 증감식을 적지 않으면 된다.
+public class Hello {
+	public static void main(String[] args) {
+		int i = 1;
+		do{
+			System.out.println('*');
+		}while( i <= 10); 
+	}
+	
+}//class end
+
+
+2.구구단 출력을 하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 2; i <10; i++) {
+			for(int j = 1; j <10; j++) {
+				System.out.println(i + " x " + j + " = " + (i * j));
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+
+
+3.짝수단만 찍으시오.
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 2; i <10; i += 2) {
+			for(int j = 1; j <10; j++) {
+				System.out.println(i + " x " + j + " = " + (i * j));
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+
+4.3의 배수인 단만 출력하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 2; i <10; i++) {
+			if(i % 3 != 0)
+				continue;
+			for(int j = 1; j <10; j++) {
+				System.out.println(i + " x " + j + " = " + (i * j));
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+
+5.아래의 Star를 찍으시오.
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 1; i <= 5; i++) {
+			for(int j = 1; j <= 5; j++) {
+				System.out.print('*');
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+
+*****
+*****
+*****
+*****
+*****
+
+_____________________________________________
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 1; i <= 5; i++) {
+			for(int j = 1; j <= i; j++) {
+				System.out.print('*');
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+
+		
+*
+**
+***
+****
+*****
+______________________________________________	
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		for(int i = 5; i >= 1; i--) {
+			for(int j = 1; j <= i; j++) {
+				System.out.print('*');
+			}
+		System.out.println();
+		}
+		
+	}//main end
+}//class end
+	
+*****
+****
+***
+**
+*
+
+________________________________________________
+
+public class Hello {
+	public static void main(String[] args) {
+	
+		for(int i = 1; i <= 5; i++) {
+			for(int j = 5; j > i; j--) {
+				System.out.print(" ");
+			}
+			for(int k = 1; k <= i ; k++) {
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+	}
+	
+}//class end
+
+     *
+    **
+   ***
+  ****
+*****		
+
+________________________________________________
+
+public class Hello {
+	public static void main(String[] args) {
+
+		int line = 4;//줄의 개수   
+		int num = 1 + (2 * (line - 1)); //홀수로 나와야 해서 만든 식
+		for(int i = 1; i <= num; i+= 2) {//13579
+			for(int j = 1; j <= num-i; j+= 2) {//13579
+				System.out.print(" ");
+			}
+			for(int k = 1; k <= i ; k++) {
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+	}
+	
+}//class end
+   *
+  ***
+ *****
+******* 
+
+6.함수는 어떻게 알아 볼수 있는가?
+ 
+ 괄호 앞에 함수명이 적혀 있는 것을 보고 알수 있다.
+ 아래를 살펴보면 
+public class Hello {
+	public static void main(String[] args) {		//괄호 앞에 main이 함수이고
+		
+		System.out.println();	//()앞 println이 함수이다.
+		
+	}//main end
+}//class end
+
+7.함수는 어떻게 만드는가?
+ 함수는 함수명을 짓고 () 안에 매개변수를 선언하여 만들 수 있다. 
+
+8.함수는 어떻게 써먹는가?
+
+ 함수명을 쓰고 () 안에 매개변수의 타입인 값을 집어 넣어 호출할 수 있다.
+ 그냥 함수를 실행시킬 수도 있고 return 타입이 있어 return 값을 받을 수도 있다.
+  
+9.아래의 함수를 만드시오.
+함수이름: starPrint
+매개변수: type 1개
+기능: 매개변수에 3를 전달하면 3층 석탑, 5를 전달하면 5층석탑
+예) 3전달시 3층석탑
+*
+**
+***
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		starPrint(3);
+		
+	}//main end
+
+	public static void starPrint(int num) {
+		for(int i = 1; i <= num ; i++) {
+			for(int j = 1; j <= i ; j++) {
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+		
+	}
+}//class end
+
+_______________________________________________________
+
+5전달시 5층석탑
+*
+**
+***
+****
+*****
+
+public class Hello {
+	public static void main(String[] args) {
+		
+		starPrint(5);
+		
+	}//main end
+
+	public static void starPrint(int num) {
+		for(int i = 1; i <= num ; i++) {
+			for(int j = 1; j <= i ; j++) {
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+		
+	}
+}//class end
+
+ 
+10.아래의 함수를 만들고,해당함수를 호출하여 확인하시오. 
+
+함수이름: getGrade()
+매개변수: double type 1개
+리턴: 수 우 미 양 가 중 하나의 char 타입
+
+public class Hello {
+	public static void main(String[] args) {
+
+		System.out.println(getGrade(60.5));
+		
+	}
+
+	public static char getGrade (double avg) {
+		
+		if(avg >= 90) {
+			return '수';
+		}else if (avg >= 80) {
+			return '우';
+		}else if (avg >= 70) {
+			return '가';
+		}else if (avg >= 60) {
+			return '양';
+		}else{
+			return '가';
+		}
+		
+	}
+}//class end
+
+결과 : 양
+
+11.매개변수 하나를 받아 원의 넓이를 리턴하는 함수를 작성하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+	
+		System.out.println(circle(3));
+	
+	}
+
+	public static double circle(int rad) {
+		
+		final double PI = 3.14;
+		return 2 * PI * rad;
+	}
+}//class end
+
+결과 : 18.84
+
+12.매개변수 두개를 받아, 사각형의 넓이를 리턴하는 함수를 작성하시오.
+
+public class Hello {
+	public static void main(String[] args) {
+	
+		System.out.println(square(3, 4));
+		
+	}
+
+	public static int square(int height, int width) {
+
+		return height * width;
+	}
+}//class end
+
+결과 : 12
