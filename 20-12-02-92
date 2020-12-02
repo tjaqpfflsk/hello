@@ -1,0 +1,291 @@
+1.생성자란 무엇인가?
+
+ 클래스 이름하고 함수이름하고 똑같은 것을 말한다.
+ 반환형이 없다. 값을 초기화하기 위한 용도로 사용된다.
+
+2.디폴트 생성자란 무엇인가?
+
+ 객체를 생성할 때 함수를 만들어 주지 않아도 컴파일러가 자동으로 생성자를 만들어 주는 것을 말한다.
+
+3.생성자의 용도에 대하여 설명하시오.
+
+ 값을 초기화하기 위함이다.
+
+4.null 에 대하여 설명하시오.
+
+ 메모리가 유한하므로 메모리에 올렸다가 지웠다가를 반복하면서 그 자리에 어떤 값이 들어가 있을지 모르기 때문에 초기화를 해서
+ 그 값을 지워 주는데 그 때 null을 쓰면 메모리를 비워 준다. 
+
+5.금일 프로그래밍 했던 문제
+========================================
+자바 클래스를 작성하는 연습을 해보자. 다음 main() 메소드를 실행하였을 때 예시와 같이 출력되도록 TV 클래스를 작성하라.
+
+public static void main(String[] args) {
+   TV myTV = new TV("LG", 2017, 32); //LG에서 만든 2017년 32인치
+   myTV.show();
+}
+LG에서 만든 2017년형 32인치 TV
+
+답 : 
+
+package java_homework;
+
+public class TV {
+	
+	String brand;
+	int year;
+	int inch;
+	
+	TV(String brand, int year, int inch){
+		this.brand = brand;
+		this.inch = inch;
+		this.year = year;
+	}
+	
+	public void show () {
+		System.out.println(brand + "에서 만든 "+ year +"년형 " + inch + "인치 TV");
+	}
+}//class end
+
+==========================================
+		int math, science, english;
+		math = 90;
+		science = 100; 
+		english = 80;
+		
+		Grade me = new Grade(math, science, english);
+		System.out.println("평균은 " + me.average());
+답 :                 
+                
+package java_homework;
+
+public class Grade {
+	
+	int math, science, english;
+	
+	Grade(int math, int science, int english){
+		this.english = english;
+		this.math = math;
+		this.science = science;
+	
+	}
+	
+	public double average() {
+		return (math + science + english)/3.0;
+	}
+	
+
+}//class end
+
+============================================
+노래 한 곡을 나타내는 Song 클래스를 작성하라. Song은 다음 필드로 구성된다.
+
+- 노래의 제목을 나타내는 title
+- 가수를 나타내는 artist
+- 노래가 발표된 연도를 나타내는 year
+- 국적을 나타내는 country
+
+또한 Song 클래스에 다음 생성자와 메소드를 작성하라.
+- 생성자 2개: 기본 생성자와 매개변수로 모든 필드를 초기화하는 생성자
+- 노래 정보를 출력하는 show() 메소드
+- main() 메소드에서는 1978년, 스웨덴 국적의 ABBA가 부른 "Dancing Queen"을
+song 객체로 생성하고 show()를 이용하여 노래의 정보를 다음과 같이 출력하라.
+
+답 : 
+
+package java_homework;
+
+public class Song {
+
+	String title;
+	String artist;
+	int year;
+	String country;
+	
+	Song(int year,String country,String artist,String title){
+		this.artist = artist;
+		this.country = country;
+		this.title = title;
+		this.year = year;
+	}
+	
+	public void show() {
+		System.out.println(year + "년, "+country+ "국적의 "+artist+"가 부른 "+title);
+	}
+
+}//class end
+
+
+===============================================
+아래와 같이 성적을 연속적으로 입력 받고 평균을 내는  프로그램을 작성하시오.
+
+국어 영어 수학을 입력하세요!
+100 60 70
+평균은 76.66666666666667
+계속 하시겠습니까
+y
+국어 영어 수학을 입력하세요!
+90 80 70
+평균은 80.0
+계속 하시겠습니까
+n
+프로그램 종료 입니다.
+
+답 :
+
+package java_homework;
+
+import java.util.Scanner;
+
+public class Plactice01 {
+	public static void main(String[] args) {
+
+		while (true) {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("국어, 영어, 수학을 입력하세요!!");
+			int kor = scanner.nextInt();
+			int eng = scanner.nextInt();
+			int math = scanner.nextInt();
+
+			Grade grade = new Grade(kor, eng, math);
+			grade.show();
+
+			System.out.println("계속하시겠습니까?");
+			String yesOrNo = scanner.next();
+			if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+				continue;
+			} else {
+				break;
+			}
+		}
+
+		System.out.println("프로그램 종료 입니다.");
+	}//main end
+}//class end
+
+
+package java_homework;
+
+public class Grade {
+	
+	int kor;
+	int eng;
+	int math;
+	
+	Grade(int kor, int eng, int math){
+		this.eng = eng;
+		this.kor = kor;
+		this.math = math;
+	}
+
+	public void show () {
+		System.out.println("평균은 " + (kor + eng + math)/3.0);
+	}
+}//class end
+
+==============================================
+6. 아래의 프로그램을 작성하시오.
+ - 화폐 매수 구하기
+ - 반드시 클래스로 작성할것 
+출력
+---------------------------------
+136000
+오만원 : 2장
+만원 : 3장
+오천원 : 1장
+천원 : 1장
+오백원 : 0개
+백원 : 0개
+계속 하시겠습니까
+y
+1456000
+오만원 : 29장
+만원 : 0장
+오천원 : 1장
+천원 : 1장
+오백원 : 0개
+백원 : 0개
+계속 하시겠습니까
+
+답 : 
+
+import java.util.Scanner;
+
+public class Hello {
+	public static void main(String[] args) {
+
+		Scanner scanner = null;
+
+		
+		while (true) {//조건 값을 시작을 참으로 해주고 그 다음 안에 조건식을 준다.
+			scanner = new Scanner(System.in);
+			System.out.println("돈을 입력하세요!");
+
+			int num = scanner.nextInt();
+
+			Money money = new Money(num);
+			money.show();
+
+			System.out.println("계속하시겠습니까?");
+			String yesOrNo = scanner.next();
+			if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+				continue;
+			} else {
+				break;
+			}
+		}
+
+		System.out.println("프로그램 종료 입니다.");
+		scanner.close();
+
+	}//main end
+}// class end
+
+
+public class Money {
+	int num;
+
+	Money(int num) {//생성함수
+		this.num = num;
+	}
+
+	public void show() {
+
+		System.out.println("오만원 : " + num / 50000 + "장");
+		num = num % 50000;
+		System.out.println("만원 : " + num / 10000 + "장");
+		num = num % 10000;
+		System.out.println("오천원 : " + num / 5000 + "장");
+		num = num % 5000;
+		System.out.println("천원 : " + num / 1000 + "장");
+		num = num % 1000;
+		System.out.println("오백원 : " + num / 500 + "개");
+		num = num % 500;
+		System.out.println("백원 : " + num / 100 + "개");
+	}
+}//class end
+
+
+7.자바의 명명 규칙에 대하여 설명하시오.
+-클래스
+
+  클래스의 첫 글자는 대문자로 한다.
+  둘 이상의 단어가 모일 때에는 붙여쓰고 첫글자는 대문자로 한다.
+  
+-메소드와 변수
+
+  메소드와 변수의 첫 글자는 소문자로 한다.
+  둘 이상의 단어가 모일 때에는 붙여쓰고 첫글자는 대문자로 한다.
+  
+-상수
+
+  상수는 모든 글자를 대문자로 한다.
+  둘 이상의 단어가 모일 때에는 _를 사용한다.
+  
+-camel case 
+
+ 둘 이상의 단어가 모일 때에는 붙여쓰고 첫글자는 대문자로 쓰는 법을 말한다.
+ 
+-snake case
+ 소문자나 대문자로 통일을 한 뒤에 둘 이상의 단어가 모일 때에는 _를 사용하는 법을 말한다.
+
