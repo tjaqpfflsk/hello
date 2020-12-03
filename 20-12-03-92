@@ -56,8 +56,6 @@ import java.util.Scanner;
 public class GameMain {
 	public static void main(String[] args) {
 
-		// 가위 바위 보 컴퓨터하고 나하고 하는 것 컴퓨터 셋중에 하나를 난수로 받아서 주먹주먹
-		// 아홉 개 승부를
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
@@ -74,7 +72,7 @@ public class GameMain {
 				System.out.println("나 : " + abc + " 컴퓨터 : 보");
 			}
 
-			Game game = new Game(abc);
+			Game game = new Game(abc,num);
 			game.result();
 
 			System.out.println("계속하시겠습니까?");
@@ -94,6 +92,7 @@ public class GameMain {
 	}// main end
 }// class end
 ---------------------------------
+//if 문으로 해결한 
 package java_homework;
 
 
@@ -104,6 +103,7 @@ public class Game {
 	
 	Game(String abc){
 		this.abc = abc;
+		this.num = num;
 	}
 	
 	public void result () {
@@ -135,6 +135,55 @@ public class Game {
 		}
 	}
 }//class end
+------------------------------------------
+//switch문으로 한 
+package java_homework;
+
+public class Game {
+
+	String abc;
+	int num;// 1가위 2바위 3보
+
+	Game(String abc, int num) {
+		this.abc = abc;
+		this.num = num;
+	}
+
+	public void result() {
+		switch (num) {// 기본적으로 괄호 안은 정수 값이 온다.
+		case 1:// 가위
+			if (abc.equals("가위")) {
+				System.out.println("무승부");
+			} else if (abc.equals("바위")) {
+				System.out.println("내가 이김. 컴퓨터 짐");
+			} else {// 보
+				System.out.println("내가 짐. 컴퓨터 이김");
+			}
+			break;
+		case 2:// 바위
+			if (abc.equals("가위")) {
+				System.out.println("내가 짐. 컴퓨터 이김");
+			} else if (abc.equals("바위")) {
+				System.out.println("무승부");
+			} else {// 보
+				System.out.println("내가 이김. 컴퓨터 짐");
+			}
+			break;
+		case 3:// 보
+			if (abc.equals("가위")) {
+				System.out.println("내가 이김. 컴퓨터 짐");
+			} else if (abc.equals("바위")) {
+				System.out.println("내가 짐. 컴퓨터 이김");
+			} else {// 보
+				System.out.println("무승부");
+			}
+			break;
+		default:// 기본 if문 에서 else에 해당한다. 그래서 위에서 안 걸리면 default값 출력
+			System.out.println("잘 못 되었습니다.");
+		}
+
+	}
+}// class end
 
 10.아래와 같이 계산기 프로그램을 작성하시오.
 
@@ -145,7 +194,7 @@ public class Game {
 10 - 7
 10 - 7 = 3
 계속하시겠습니까?
-__________________________________
+---------------------------------
 package java_homework;
 
 public class Calculator {
@@ -173,7 +222,7 @@ public class Calculator {
 	
 }// class end
 
-________________________________
+-----------------------------------
 package java_homework;
 
 import java.util.Scanner;
