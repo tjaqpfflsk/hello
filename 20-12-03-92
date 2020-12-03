@@ -1,0 +1,210 @@
+1.set classpath 에 대하여 설명하시오.
+ 클래스 패스로 클래스를 다른 폴더로 옮긴 경우 클래스가 실행이 되지 않기 때문에 클래스 패스를 설정해주면 실행시킬 수 있게 된다.
+ 예시)
+ c:\ PackageStudy>set classpath=.C:\PackageStudy\MyClass
+
+
+2.절대경로와 상대경로에 대하여 설명하시오.
+  졀대경로는 폴더경로의 처음부터 끝까지 다를 말한다. 루트 디렉토리를 시작으로 지정한 것을 말한다.
+  예시)
+  c:\ PackageStudy>set classpath=.;C:\PackageStudy\MyClass
+  
+  상대경로는 현재 디렉토리를 기준으로 지정한 것을 말한다.
+  예시)
+  c:\ PackageStudy>set classpath=.\MyClass
+
+
+3. . 과 .. 의 차이는?
+. 은 현재 디렉토리를 말한다.
+.. 은 이전 디렉토리를 말한다.
+
+
+4.package의 용도는?
+   실무 등에서 클래스 이름을 같게 하여 사용하게 되는 경우 한 폴더 안에서는 같은 이름의 클래스를 사용할 수 없으므로
+   package 를 설정해주어 같은 이름의 클래스이지만 폴더를 다르게 하여 사용할 수 있도록 하는 것이다.
+
+
+5.package 의 기본적인 명명법(이름짓는법)은?
+  보통 도메인을 거꾸로 하여서 작성하는데 
+   www.oracle.com 이 경우에는 반대로
+  com.oracle.팀이름 이렇게 작성한다. (www는 안 적는다 만국 공통이라서)
+
+
+6.정보은닉에 대하여 설명하시오.
+  인스턴스 변수에 private를 선언하여
+  외부에서 인스턴스 변수를 직접적으로 바꾸지 못하게 접근을 막을 때 사용한다.
+
+
+7.접근제한자 4가지 종류에 대하여 설명하시오.
+public : 접근 제한이 없다.
+protected : 같은 패키지 내에 그리고 다른 패키지의 자손 클래스에서 접근이 가능하다.
+default : 같은 패키지 내에서만 가능하다.
+private : 같은 클래스 내에서만 접근이 가능하다.
+
+
+8.class 에서 붙일수 있는 접근 제한자 2개를 설명하고, 해당 접근제한자의 사용 목적은?
+  네 가지가 있고 class 앞에는 public과 default만 붙일 수 있고
+  publicdms 어디서든 인스턴스 생성이 가능하고
+  default 통일 패키지로 묶인 클래스에서만 인스턴스 생성이 가능하다.
+
+9.가위, 바위, 보 게임 작성하시오.
+
+package java_homework;
+
+import java.util.Scanner;
+
+public class GameMain {
+	public static void main(String[] args) {
+
+		// 가위 바위 보 컴퓨터하고 나하고 하는 것 컴퓨터 셋중에 하나를 난수로 받아서 주먹주먹
+		// 아홉 개 승부를
+		Scanner scanner = new Scanner(System.in);
+
+		while (true) {
+			System.out.println("가위, 바위, 보를 입력하세요!");
+
+			String abc = scanner.next();
+			int num = (int) (Math.random() * 3) + 1; // 123 가위 바위 보
+
+			if (num == 1) {
+				System.out.println("나 : " + abc + " 컴퓨터 : 가위");
+			} else if (num == 2) {
+				System.out.println("나 : " + abc + " 컴퓨터 : 바위");
+			} else {
+				System.out.println("나 : " + abc + " 컴퓨터 : 보");
+			}
+
+			Game game = new Game(abc);
+			game.result();
+
+			System.out.println("계속하시겠습니까?");
+
+			String yesOrNo = scanner.next();
+			if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+				continue;
+			} else {
+				break;
+			}
+
+		}
+		System.out.println("종료합니다.");
+
+		scanner.close();
+
+	}// main end
+}// class end
+---------------------------------
+package java_homework;
+
+
+public class Game {
+
+	String abc;
+	int num;//1가위 2바위 3보
+	
+	Game(String abc){
+		this.abc = abc;
+	}
+	
+	public void result () {
+		
+		if(abc.equals("가위")) {
+			if(num == 1){//가위
+				System.out.println("무승부");
+			}else if(num == 2){//바위
+				System.out.println("짐");
+			}else {//보
+				System.out.println("이김");
+			}
+		}else if(abc.equals("바위")) {//바위
+			if(num == 1){//가위
+				System.out.println("짐");
+			}else if(num == 2){//바위
+				System.out.println("무승부");
+			}else {//보
+				System.out.println("이김");
+			}
+		}else {//보
+			if(num == 1){//가위
+				System.out.println("짐");
+			}else if(num == 2){//바위
+				System.out.println("이김");
+			}else {//보
+				System.out.println("무승부");
+			}
+		}
+	}
+}//class end
+
+10.아래와 같이 계산기 프로그램을 작성하시오.
+
+==================================
+10 + 9   // 입력을 한칸씩 띄우도록 할것
+10 + 9 = 19
+계속하시겠습니까?
+10 - 7
+10 - 7 = 3
+계속하시겠습니까?
+__________________________________
+package java_homework;
+
+public class Calculator {
+
+	int num1;
+	int num2;
+	String str;
+	
+	Calculator(int num1, String str, int num2){
+		this.num1 = num1;
+		this.num2 = num2;
+		this.str = str;
+		
+	}
+	public void result() {
+		if(str.equals("-")) {
+			System.out.println(num1 +" "+ str +" " + num2 + " = " + (num1 - num2));
+		}else if(str.equals("+")){
+			System.out.println(num1 +" "+ str +" " + num2 + " = " + (num1 + num2));
+		}else {
+			System.out.println("잘 못 되었습니다.");
+		}
+		
+	}
+	
+}// class end
+
+________________________________
+package java_homework;
+
+import java.util.Scanner;
+
+public class CalculatorMain {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			System.out.println("숫자를 입력하세요!");
+			int num1 = scanner.nextInt();
+			String str = scanner.next();
+			int num2 = scanner.nextInt();
+			
+			Calculator calculator = new Calculator(num1, str, num2);
+			calculator.result();
+			
+			System.out.println("계속하시겠습니까?");
+			String yesOrNo = scanner.next();
+			if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+				continue;
+			} else {
+				break;
+			}
+
+		}
+		System.out.println("종료합니다.");
+
+		scanner.close();
+	
+	}// main end
+
+}// class end
