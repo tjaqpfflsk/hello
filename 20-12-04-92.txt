@@ -1,0 +1,226 @@
+﻿1.아래의 접근제한자에 대하여 설명하시오.
+ - private : 클래스 내에서만 사용이 가능하다.
+ - protected : 같은 패키지내에서 자손 패키지에서 사용이 가능하다.
+ - default : 같은 패키지에서만 사용이 가능하다.
+ - public : 접근에 제한이 없다.
+ 
+
+
+2.지역변수에 접근제한자를 붙이지 않는 이유는?
+  지역변수는 자기가 속한 {}중괄호 안에서만 사용하는 변수로 메모리에 올랐다가 실행되고
+사라지이므로 접근을 제한할 필요가 없다.
+
+
+
+3.캡슐화에 대하여 설명하시오.
+  여러가지 클래스들을 사용할 때 사용자에 맞게 클래스로 조합하고 구성하는 것을 말한다.
+
+
+
+4.랜덤 숫자 맞추기 게임을 짜시오.
+import java.util.Scanner;
+
+public class NumberGameMain {
+
+	public static void main(String[] args) {
+		////랜덤 값하나 내가 처음 넣은 값 횟수는 10회 횟수는 줄어든다. 답 5회만에 맞추었도다
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int num1 = (int) (Math.random()* 100) + 1;
+		int count = 10;
+		
+		while(true){
+			System.out.println("숫자를 입력하세요!");
+			System.out.println("남은 횟수 : " + count);
+			
+			int num2 = sc.nextInt();
+		
+			NumberGame ng = new NumberGame();
+			ng.setNum1(num1);
+			ng.setNum2(num2);
+			ng.result();
+		
+			count--;
+			
+			if(num1 == num2 || count == 0) {
+				break;
+			}else if(num1 > num2) {
+				continue;
+			}else {
+				continue;
+			}
+		}
+		System.out.println("축하합니다. " + (10 - count) + " 회 만에 맞추셨습니다.");
+		
+	}//main end
+
+}//class end
+
+=====================================
+
+
+public class NumberGame {
+	int num1;
+	int num2;
+	
+	NumberGame(){
+		
+	}
+	
+	
+	public int getNum1() {
+		return num1;
+	}
+
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	}
+
+	public int getNum2() {
+		return num2;
+	}
+
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+
+	public void result() {
+		if(num1 == num2) {
+			System.out.println("답은 "+ num1 + "입니다.");
+		}else if(num1 > num2) {
+			System.out.println("UP");
+		}else {
+			System.out.println("Down");
+		}
+	}
+}//class end
+
+
+
+5.static 변수의 다른 용어 3가지를 말해 보시오.
+클래스 변수, 공유 변수, 정적 변수
+
+
+
+6.자바의 메모리 영역을 3가지로 나누고, 해당 영역에 들어가는 정보를 말하여 보시오.
+ - method Area : 클래스의 정보가 들어가고 그 안에 static 을 찾아 방을 만들어 놓는다.
+ - call stack : 함수가 올라간다.
+ - heap : 객체가 생성되며 인스턴스 변수가 생성된다.
+
+
+
+7.static 변수의 접근 방법은?
+ 1) 클래스 내부에서 이름을 통해 접근하는 방법이 있다.
+ 2) 클래스 외부에서 인스턴스의 이름을 통해서 접근하는 방법과 클래스의 이름을 통해서 접근하는 방법이 있다.
+
+
+
+8.클래스 변수의 활용의 예를 드시오.
+ static final double PI = 3.14;
+ 값이 고정되어 있고 공유 되어야 하는 변수라면 클래스 변수를 사용하는 것이 좋다.
+
+
+
+9.스태틱 함수에 인스턴스 변수가 올 수 없는 이유는?
+  인스턴스 변수는 인스턴스가 존재해야만 사용할 수 있는데 클래스 함수는 인스턴스 없이 호출이 가능하므로
+클래스 함수가 호출될 때 인스턴스가 존재하지 않을 수 있기 때문이다.
+  반면 인스턴스 함수에서는 클래스 함수를 사용하는 것이 가능하다. 인스턴스 함수가 생성되었다는 것은
+이미 메모리에 클래스 함수가 올라가 있다는 것을 의미하기 때문이다.
+
+
+
+10.아래의 프로그램을 작성 하시오.
+
+다음 멤버를 가지고 직사각형을 표현하는 Rectangle 클래스를 작성하라.
+
+- int 타입의 x, y, width, height 필드: 사각형을 구성하는 점과 크기 정보
+- x, y, width, height 값을 매개변수로 받아 필드를 초기화하는 생성자
+- int square() : 사각형 넓이 리턴
+- void show() : 사각형의 좌표와 넓이를 화면에 출력
+- boolean contatins(Rectangle r) : 매개변수로 받은 r이 현 사각형 안에 있으면 true 리턴
+- main() 메소드의 코드와 실행 결과는 다음과 같다
+public static void main(String[] args) {
+   Rectangle r = new Rectangle(2, 2, 8, 7);
+   Rectangle s = new Rectangle(5, 5, 6, 6);
+   Rectangle t = new Rectangle(1, 1, 10, 10);
+   
+   r.show();
+   System.out.println("s의 면적은 "+s.square());
+   if(t.contains(r)) System.out.println("t는 r을 포함합니다.");
+   if(t.contains(s)) System.out.println("t는 s를 포함합니다.");
+}
+(2,2)에서 크기가 8x7인 사각형
+s의 면적은 36
+t는 r을 포함합니다.
+
+==================================
+
+package java_homework;
+//- int 타입의 x, y, width, height 필드: 
+
+//사각형을 구성하는 점과 크기 정보
+//- x, y, width, height 값을 매개변수로 받아 필드를 초기화하는 생성자
+//- int square() : 사각형 넓이 리턴
+//- void show() : 사각형의 좌표와 넓이를 화면에 출력
+//- boolean contatins(Rectangle r) : 
+//매개변수로 받은 r이 현 사각형 안에 있으면 true 리턴
+
+//(2,2)에서 크기가 8x7인 사각형
+//s의 면적은 36
+//t는 r을 포함합니다.
+
+public class Rectangle {
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+
+	Rectangle(int x, int y, int width, int height) {
+		this.height = height;
+		this.width = width;
+		this.x = x;
+		this.y = y;
+	}
+
+	public int square() {
+		return height * width;
+	}
+
+	public void show() {
+		System.out.println("(" + x + "," + y + ")에서 크기가 " + width + "x" + height + "인 사각형");
+	}
+
+	public boolean contains(Rectangle r) {
+		if (x < (r.x) && y < (r.y)) {
+			if ((x + width) > (r.x+r.width) && (x + height) > (r.y +r.height)) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+}// class end
+
+==========================
+
+package java_homework;
+
+public class RecMain {
+
+	public static void main(String[] args) {
+		Rectangle r = new Rectangle(2, 2, 8, 7);
+		Rectangle s = new Rectangle(5, 5, 6, 6);
+		Rectangle t = new Rectangle(1, 1, 10, 10);
+
+		r.show();
+		System.out.println("s의 면적은 " + s.square());
+		if (t.contains(r))
+			System.out.println("t는 r을 포함합니다.");
+		if (t.contains(s))
+			System.out.println("t는 s를 포함합니다.");
+
+	}
+
+}
