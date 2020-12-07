@@ -1,0 +1,285 @@
+﻿1.인스턴스 함수안에 static 변수와 함수가 올수 있는 이유는?
+  인스턴스 함수를 생성할 때 이미 static 함수와 변수가 메모리에 올라가 있기 때문에 올 수 있다.
+
+
+
+2.메소드 오버로딩이란?
+  함수의 이름은 같으나 매개변수의 타입과 개수를 달리하며 만드는 것을 말한다. 
+
+
+
+3.메소드 오버로딩을 적용한 대표적인 함수는?
+  대표적인 예로 println을 들 수 있다. 
+  System.out.println("오버로딩");
+  System.out.println('가');
+  System.out.println(7);
+  System.out.println(3.14);
+
+
+
+4.this 함수에 대하여 설명하시오.
+ this 함수란 생성자 함수를 불러 와서 다른 생성자 함수를 만들 때 사용한다.
+
+
+
+5.this란 무엇인가?
+  객체에서 인스턴스 변수 자기자신을 뜻한다.
+  
+
+
+6.스트링 객체를 생성하는 2가지 방법은?
+1) 직접 리터럴 값을 넣어서 생성하는 법
+String str1 = "Simple String"; 
+2) new를 이용하여 새로운 객체를 생성하는 법이 있다.
+String str2 = new String("Simple String");
+
+.아래의 결과를 예측하고,이유를 설명하시오.
+String str1 = "Simple String";
+String str2 = "Simple String";
+   
+      String str3 = new String("Simple String");
+      String str4 = new String("Simple String");
+   
+      if(str1 == str2)
+         System.out.println("str1과 str2는 동일 인스턴스 참조");
+      else
+         System.out.println("str1과 str2는 다른 인스턴스 참조");
+   
+      if(str3 == str4)
+         System.out.println("str3과 str4는 동일 인스턴스 참조");
+      else
+         System.out.println("str3과 str4는 다른 인스턴스 참조");
+
+결과 : 
+str1과 str2는 동일 인스턴스 참조
+str3과 str4는 다른 인스턴스 참조
+
+이유 : 
+  str1과str2는 직접적으로 리터럴을 넣는 방법으로 이 경우 인스턴스 poul에 넣어 값이 같을 경우 하나의 객체만 생성한다.
+메모리를 아끼기 위해서 이다. 그래서 str1 == str2 이렇게 비교하는 것은 주소값이 같은가?를 물는 조건식으로 
+하나의 객체의 주소를 가지는 str1, str2 는 같은 인스턴스 참조라는 결과가 나온다.
+ 하지만 str3과 str4는 따로 따로 객체를 생성하여 주소 값이 다르므로 다른 인스턴스 참조라는 결과가 나온다.
+
+  
+
+7.imutable 에 대하여 설명하시오.
+String 에서 객체를 하나 생성하여 그 값을 넣었을 때 그 값에 추가적으로 새로운 값은 첨가할 때에는 원래 값이 있는
+객체는 그대로 놔두고 새로운 객체를 만든다. 즉 한번 만들어진 값은 불변이고 변하게 할 경우에는 새로운 객체가 생성된다는 것이다.
+예를 들어)
+String str = "Hello";
+str = str + "Hello";
+이 경우 만약 주소 1000번에  Hello가 들어 있었을 때 여기에 Hello를 추가해서 그대로 HelloHello 가 들어가는 것이 아니라
+1000번에  Hello 는 놔두고 2000번에 HelloHello를 만드는 것이다.  
+
+
+
+8. 사용자로부터 받은 문자열(영문으로)에서 자음과 모음 개수를 계산하는 프로그램을 작성하라.
+package java_my;
+
+public class EnglishCount {
+
+	private String eng;
+	private int consonant;
+	private int vowel;
+
+	public String getEng() {
+		return eng;
+	}
+
+	public void setEng(String eng) {
+		this.eng = eng;
+	}
+
+	public int getConsonant() {
+		return consonant;
+	}
+
+	public void setConsonant(int consonant) {
+		this.consonant = consonant;
+	}
+
+	public int getVowel() {
+		return vowel;
+	}
+
+	public void setVowel(int vowel) {
+		this.vowel = vowel;
+	}
+
+	public void count() {
+		for (int i = 1; i <= eng.length(); i++) {
+
+			switch (eng.charAt(i)) {
+			case ('a'):
+				vowel++;
+			case ('e'):
+				vowel++;
+			case ('i'):
+				vowel++;
+			case ('o'):
+				vowel++;
+			case ('u'):
+				vowel++;
+			default:
+				consonant++;
+				
+			}
+		}
+		System.out.println("모음의 개수 : " + vowel);
+		System.out.println("자음의 개수 : " + consonant);	
+	}
+
+}//class end
+
+================================================
+package java_my;
+
+import java.util.Scanner;
+
+public class EngMain {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		
+		String eng = sc.next();
+	
+		EnglishCount ec = new EnglishCount();
+		ec.count();
+	
+	}
+
+}
+
+
+9. 사용자로부터 키를 입력받아서 표준 체중을 계산한 후에 사용자의 체중과 비교하여 저체중인지, 표준인지, 과체중인지를 판단하는 프로그램을 작성하라. 표준 체중 계산식은 다음을 사용하라.
+표준체중 = ( 키 - 100 ) * 0.9
+package java_my;
+
+public class Weight {
+
+	private double height;
+	private double weight;
+	private double standard;
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public double getStandard() {
+		return standard;
+	}
+
+	public void setStandard(double standard) {
+		this.standard = standard;
+	}
+
+	Weight() {
+
+	}
+
+	public void result() {
+		if (standard == weight) {
+			System.out.println("표준체중입니다.");
+		} else if (standard > weight) {
+			System.out.println("저체중입니다.");
+		} else {
+			System.out.println("과체중입니다.");
+		}
+	}
+
+}
+
+=======================================
+
+package java_my;
+
+import java.util.Scanner;
+
+public class WeightMain {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("키,체중을 입력해주세요!");
+		double height = sc.nextDouble();
+		double weight = sc.nextDouble();
+		double standard = (height - 100) * 0.9;
+		
+		Weight we = new Weight();
+		we.result();
+		
+		
+
+	}
+
+}
+
+=======================================
+
+
+10. 2와 100 사이에 있는 모든 소수(prime number)를 찾는 프로그램을 작성하라. 
+주어진 정수 k를 2부터 k-1까지의 숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.
+package java_my;
+
+public class PrimeNumber {
+
+	public static void main(String[] args) {
+
+		int count = 0;
+
+		for (int i = 2; i <= 100; i++){
+			for (int j = 2; j <= i; j++) {
+				if (i % j == 0) {
+					count++;
+				}
+			}
+			if (count == 1) {
+				System.out.println(i);
+			}
+			count = 0;
+		}
+	}//main end
+
+}// class end
+
+
+
+11.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
+입력:abcde
+출력:edcba
+
+package java_my;
+
+import java.util.Scanner;
+
+public class BackMain {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+
+		String str = sc.next();
+		
+		for(int i = str.length() - 1 ; i >= 0 ; i--) {
+			System.out.print(str.charAt(i));
+		}
+		
+	}//main end
+
+}//class end
+
+
