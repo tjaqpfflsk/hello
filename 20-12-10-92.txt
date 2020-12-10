@@ -1,0 +1,426 @@
+﻿1.상속을 UML로 표기해 보세요.
+class Man{
+}
+class BusinessMan extends Man{
+
+}
+
+
+2.부모클래스와 자식클래스의 다른 용어들은?
+- 부모클래스, 상위클래스, 기초글래스
+- 하위클래스, 유도클래스, 자식클래스
+
+
+
+3.super 키워드와 this 키워드의 차이는 무엇인가요?(????더 이상 상세히 못 적겠다. 더 공부하기)
+this 는 자기자신의 변수와 함수를 가르키고 super은 상속받은 변수와 함수를 가르킨다.
+
+
+
+4.단일 상속과 다중상속 이란?
+  단일 상속은 한마디로 부모클래스가 하나인 것을 뜻하고 다중 상속은 부모클래스가 둘이상을 말하는데
+  c언어에서는 가능하나 자바에서는 가능하지 않다.
+
+
+
+5.다음 코드와 같이 과목과 점수가 짝을 이루도록 2개의 배열을 작성하라.
+
+String course[] = {"Java", "C++", "HTML5", "컴퓨터구조", "안드로이드"};
+int score[]  = {95, 88, 76, 62, 55};
+그리고 다음 예시와 같이 과목 이름을 입력받아 점수를 출력하는 프로그램을 작성하라. 
+"그만"을 입력받으면 종료한다. (Java는 인덱스 0에 있으므로 score[0]을 출력)
+
+과목 이름 >> Jaba
+없는 과목입니다.
+과목 이름 >> Java
+Java의 점수는 95
+과목 이름 >> 안드로이드
+안드로이드의 점수는 55
+과목 이름 >> 그만
+[Hint] 문자열을 비교하기 위해서는 String 클래스의 equals()메소드를 이용해야 한다.
+
+String name;
+if(course[i].equals(name)) {
+    int n = score[i];
+    ...
+}
+
+------------------------------------------------------------------------------------------------
+package java_homework;
+
+import java.util.Scanner;
+
+public class Study {
+
+	String course[] = { "Java", "C++", "HTML5", "컴퓨터구조", "안드로이드" };
+	int score[] = { 95, 88, 76, 62, 55 };
+
+	public Study() {
+
+	}
+
+	public void print() {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("과목 이름 >>");
+			String name = sc.next();
+			if (name == null) {
+				System.out.println("다시 입력하세요");
+				return;
+			}
+			if(name.equals("그만")){
+				sc.close(); 
+				break;
+			}
+			for (int i = 0; i < course.length; i++) {
+				if (course[i].equals(name)) {
+					System.out.println(course[i] + "의 점수는 " + score[i]);
+					break;
+			 }else {
+					System.out.println("없는 과목입니다.");
+					break;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Study study = new Study();
+		study.print();
+
+	}
+}
+
+6.다음은 2차원 상의 한 점을 표현하는 Point 클래스이다.
+
+class Point {
+   private int x, y;
+   public Point(int x, int y) { this.x = x; this.y = y; }
+   public int getX() { return x; }
+   public int getY() { return y; }
+   protected void move(int x, int y) { this.x =x; this.y = y; }
+}
+
+
+Point를 상속받아 색을 가진 점을 나타내는 ColorPoint 클래스를 작성하라. 다음 main() 메소드를 포함하고
+ 실행 결과와 같이 출력되게 하라.
+
+public static void main(String[] args) {
+   ColorPoint cp = new ColorPoint(5, 5, "YELLOW");
+   cp.setXY(10, 20);
+   cp.setColor("RED");
+   String str = cp.toString();
+   System.out.println(str+"입니다. ");
+}
+
+=======================
+RED색의 (10,20)의 점입니다. 
+------------------------------------------------------------------------------------
+package java_homework;
+
+class Point {
+	private int x, y;
+
+	public Point(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	protected void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+}
+
+public class ColorPoint extends Point {
+	private String color;
+
+	public ColorPoint(int x, int y, String color) {
+		super(x, y);
+		this.color = color;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setXY(int x, int y) {
+		move(x,y);//이해는 했는데 반드시 이렇게 밖에 안되는지 잘 모르겠는 부분
+//getX(); getY(); 이렇게 하다가 안되니까
+//x=getX(); y=getY(); 별 짓을 다하다가 위에 함수를 발견했다......
+	}
+
+	public String toString() {//그리고 여기서도 안되었는데 바보같이 내가 private를 붙여놨더라 허탈 .......
+		return color + "색의 (" + getX() + "," + getY() + ")의 점";
+	}
+
+	public static void main(String[] args) {
+
+		ColorPoint cp = new ColorPoint(5, 5, "YELLOW");
+		cp.setXY(10, 20);
+		cp.setColor("RED");
+		String str = cp.toString();
+		System.out.println(str + "입니다. ");
+
+	}
+
+}
+
+
+
+7.Point를 상속받아 색을 가진 점을 나타내는 ColorPoint 클래스를 작성하라. 
+다음 main() 메소드를 포함하고 실행 결과와 같이 출력되게 하라.
+
+public static void main(String[] args) {
+   ColorPoint zeroPoint = new ColorPoint(); // (0,0) 위치의 BLACK 색 점
+   System.out.println(zeroPoint.toString() + "입니다.");
+   ColorPoint cp = new ColorPoint(10, 10); // (10,10) 위치의 BLACK 색 점
+   cp.setXY(5,5);
+   cp.setColor("RED");
+   System.out.println(cp.toString()+"입니다.");
+}
+=========================
+BLACK색의 (0,0) 점입니다.
+RED색의 (5,5) 점입니다.
+-------------------------------------------------------------------------------------------
+package java_homework;
+
+class Point {
+	private int x, y;
+
+	public Point(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	protected void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+}
+
+public class ColorPoint extends Point {
+	private String color;
+
+
+	
+	public ColorPoint(int x, int y, String color) {
+		super(x, y);
+		this.color = color;
+	}
+
+	public ColorPoint(int x, int y) {
+		super(x, y);
+	}
+
+	public ColorPoint(){//잘 모르겠던 부분 !!! 평상시에 계속 안에 아무것도 안 적고 디폴트 값으로 놨뒀었는데 안되서 당황!!
+		this(0, 0, "BLACK");
+		
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setXY(int x, int y) {
+		super.move(x, y);
+	}
+
+	public String toString() {//여기 이게 있어서 초기화 값을 넣어줘야 하는거임
+		return color + "색의 (" + getX() + "," + getY() + ")의 점";
+	}
+
+	public static void main(String[] args) {
+
+		ColorPoint zeroPoint = new ColorPoint(); // (0,0) 위치의 BLACK 색 점
+		System.out.println(zeroPoint.toString() + "입니다.");
+		ColorPoint cp = new ColorPoint(10, 10); // (10,10) 위치의 BLACK 색 점
+		cp.setXY(5, 5);
+		cp.setColor("RED");
+		System.out.println(cp.toString() + "입니다.");
+	}
+
+}
+
+
+8.Point를 상속받아 3차원의 점을 나타내는 Point3D 클래스를 작성하라. 
+다음 main() 메소드를 포함하고 실행 결과와 같이 출력되게 하라.
+
+public static void main(String[] args) {
+   Point3D p = new Point3D(1,2,3); // 1,2,3은 각각 x, y, z축의 값.
+   System.out.println(p.toString()+"입니다.");
+   p.moveUp(); // z 축으로 위쪽 이동
+   System.out.println(p.toString()+"입니다.");
+   p.moveDown(); // z 축으로 아래쪽 이동
+   p.move(10, 10); // x, y 축으로 이동
+   System.out.println(p.toString()+"입니다.");
+   p.move(100,  200, 300); // x, y, z축으로 이동
+   System.out.println(p.toString()+"입니다.");
+}
+(1,2,3) 의 점입니다.
+(1,2,4) 의 점입니다.
+(10,10,3) 의 점입니다.
+(100,200,300) 의 점입니다.
+----------------------------------------------------------------------------------------------------
+package java_homework;
+
+public class Point3D {
+	private int x;
+	private int y;
+	private int z;
+	
+
+	public Point3D(int x, int y, int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	public void moveUp() {
+		z += 1;
+		
+	}
+	
+	public void moveDown() {
+		z -= 1;
+		
+	}
+	
+	public void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void move(int x, int y, int z) {//오버라이딩
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	public String toString() {
+		return "("+x+","+y+","+z+") 의 점";
+	}
+	
+	public static void main(String[] args) {
+
+		Point3D p = new Point3D(1, 2, 3); // 1,2,3은 각각 x, y, z축의 값.
+		System.out.println(p.toString() + "입니다.");
+		p.moveUp(); // z 축으로 위쪽 이동
+		System.out.println(p.toString() + "입니다.");
+		p.moveDown(); // z 축으로 아래쪽 이동
+		p.move(10, 10); // x, y 축으로 이동
+		System.out.println(p.toString() + "입니다.");
+		p.move(100, 200, 300); // x, y, z축으로 이동
+		System.out.println(p.toString() + "입니다.");
+
+	}
+
+}// class end 요거는 좀 쉬웠다.
+
+
+
+
+9.배열을 이용하여 간단한 극장 예약 시스템을 작성하여 보자.
+
+아주 작은 극장이라서 좌석이 10개 밖에 되지 않는다.
+
+사용자가 예약을 하려고 하면 먼저 좌석 배치표를 보여준다.
+
+즉, 예약이 끝난 좌석은 1로, 예약이 되지 않은 좌석은 0으로 나타낸다.
+=========
+출력
+--------------------
+0 1 2 3 4 5 6 7 8 9
+--------------------
+0 0 0 0 0 0 0 0 0 0
+
+몇번째 좌석을 예약 하시겠습니까? 2
+--------------------
+0 1 2 3 4 5 6 7 8 9
+--------------------
+0 0 1 0 0 0 0 0 0 0
+---------------------------------------------------------------------------------------------------
+package java_homework;
+
+import java.util.Scanner;
+
+public class Reservation {
+	private int[] arrNum;
+	private int[] arrBook;
+	final int ROWS = 10;
+
+	public Reservation() {
+		arrNum = new int[ROWS];
+		arrBook = new int[ROWS];
+
+	}
+
+	public void first() {
+		System.out.println("출력");
+		System.out.println("--------------------");
+		for (int i = 0; i < arrNum.length; i++) {
+			arrNum[i] = i;
+		}
+		for (int e : arrNum) {
+			System.out.print(e + " ");
+		}
+		System.out.println();
+		System.out.println("--------------------");
+		for (int e : arrBook) {
+			System.out.print(e + " ");
+		}
+		System.out.println();
+
+	}
+
+	public void Booking() {
+		System.out.println("몇 번째 좌석을 예약 하시겠습니까?");
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		if (num == 0) {
+			return;
+		}
+		if (num == arrNum[num]) {
+			arrBook[num] = 1;
+		}
+		first();
+	}
+	
+	public void print() {
+		first();
+		Booking();
+	}
+
+	public static void main(String[] args) {
+
+		Reservation res = new Reservation();
+		res.print();
+
+	}
+
+}
