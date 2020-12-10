@@ -159,9 +159,13 @@ public class ColorPoint extends Point {
 	}
 
 	public void setXY(int x, int y) {
-		move(x,y);//이해는 했는데 반드시 이렇게 밖에 안되는지 잘 모르겠는 부분
-//getX(); getY(); 이렇게 하다가 안되니까
-//x=getX(); y=getY(); 별 짓을 다하다가 위에 함수를 발견했다......
+		move(x,y);
+			//이해는 했는데 반드시 이렇게 밖에 안되는지 잘 모르겠는 부분
+			//getX(); getY(); 이렇게 하다가 안되니까
+			//x=getX(); y=getY(); 별 짓을 다하다가 위에 함수를 발견했다......
+			//setX(x); setY(y); 이렇게 해도 되는데 이럴려면 위에 setter을 만들어 주면 된다.
+			//super.setX() = x; super.setY() = y; 이렇게는 안된다.이상하게 막쓴거지 내가....셋함수에 파라미터가 있어야 하니까 ( )없이는 안된다.
+			//super.x = x; super.y = y; 위에 변수 값을 private를 없애주면 이렇게는 사용이 가능하다.
 	}
 
 	public String toString() {//그리고 여기서도 안되었는데 바보같이 내가 private를 붙여놨더라 허탈 .......
