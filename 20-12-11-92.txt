@@ -1,0 +1,465 @@
+﻿1.is a 관계와 has a 관계에 대하여 설명하시오.
+* 상속의 is - a 관계 
+ : (자식클래스) 은 ~~이다.
+이러한 경우 상속이 가능하다.
+ 
+* 상속의 has - a 관계
+: cpu는 컴퓨터이다.
+ (이렇게 말이 잘 안되는 관계는 has -a관계가 더 어울린다.)
+컴퓨터는 cpu도 가지고 메모리도 가지고 메인보드도 가지고 
+
+
+
+2.다형성이란 무엇인가?
+1.다형성(polymorphism)
+ : 부모 = 자식(o)
+   자식 = 부모(x)
+- 형변환이 없이 들어간다.
+
+class SmartPhone extends MobilePhone {....}
+스마트폰은 모바일폰이다.
+SmartPhone phone = new SmartPhone("010-555-777", "Nougat");
+따라서 스마트폰 참조변수로 스마트폰 참조 가능하고,
+MobilePhone phone = new SmartPhone("010-555-777", "Nougat");
+↑ 역은 성립하지 않음에 주의!
+모바일폰 참조변수로 스마트폰 참조도 가능하다.
+SmartPhone phone = new MobilePhone();  이거는 성립하지 않는다.
+
+
+
+3.아래가 되지 않는 이유에 대하여 메모리 그림으로
+설명하시오.MobilePhone(부모) SmartPhone(자식)
+SmartPhone s = new MobilePhone();
+
+
+
+4.메소드 오버라이딩 이란?
+*오버라이딩
+- 상속관계에서 함수이름 파라미터 다 똑같고 구현 내용만 다른 경우를 말한다. 
+- 덮어 쓴다는 의미이다. 
+- 오버라이딩은 자식꺼 그래서 자식이 부모를  덮어쓴다. 
+-인스턴스 변수는 오버라이딩 되지 않는다.
+
+
+
+5.갬블링 게임을 만들어보자. 
+두 사람이 게임을 진행한다. 이들의 이름을 키보드로 입력 받으며 각 사람은 Person 클래스로 작성하라. 
+그러므로 프로그램에는 2개의 Person 객체가 생성되어야 한다. 
+두 사람은 번갈아 가면서 게임을 진행하는데 각 사람이 자기 차례에서 <Enter> 키를 입력하면,
+ 3개의 난수가 발생되고 이 숫자가 모두 같으면 승자가 되고 게임이 끝난다. 
+난수의 범위를 너무 크게 잡으면 3개의 숫자가 일치하게 나올 가능성이 적기 때문에 숫자의 범위는 1~3까지로 한다.
+
+1번째 선수 이름>>수희
+2번째 선수 이름>>연수
+[수희]:
+	3  1  1  아쉽군요!
+[연수]:
+	3  1  3  아쉽군요!
+[수희]:
+	2  2  1  아쉽군요!
+[연수]:
+	1  1  2  아쉽군요!
+[수희]:
+	3  3  3  수희님이 이겼습니다!
+--------------------------------------------------------------------
+package java_saba;
+
+import java.util.Scanner;
+
+class Game {
+	int person = 2;
+	int[] num;
+	String[] nameArr;
+	
+	public Game(){
+		nameArr = new String[person];
+		num = new int[3];
+	}
+	public void input() {
+		Scanner sc = new Scanner(System.in);
+		for(int i = 0; i<person; i++) {
+			System.out.println((i+1) + "번째 선수 이름>>");
+			nameArr[i] = sc.next();
+		}
+	}
+	public void print() {
+		int p = 0;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			String enter = sc.nextLine();
+			for (int i = 0; i < num.length; i++) {
+				num[i] = (int) (Math.random() * 3) + 1;
+			}
+			System.out.print("[" + nameArr[p] + "]\n");
+			boolean a = false;
+			for (int i = 1; i < num.length; i++) {
+				if (num[i - 1] != num[i]) {
+					a = true;
+				}
+			}
+			if (p == person - 1) {
+				p = 0;
+			} else {
+				p++;
+			}
+			if (a) {
+				for (int e : num) {
+					System.out.print(e + " ");
+				}
+				System.out.println("아쉽군요!");
+			} else {
+				for (int e : num) {
+					System.out.print(e + " ");
+				}
+				System.out.println("이겼습니다!");
+				break;
+			}
+
+		}
+	}
+}
+
+public class GamblingGameMain {
+
+	public static void main(String[] args) {
+		Game person = new Game();
+		person.input();
+		person.print();
+
+	}
+}
+
+6.문제 10의 갬블링 게임을 n명이 하도록 수정하라. 
+실행 예시와 같이 게임에 참여하는 선수의 수를 입력받고 각 선수의 이름을 입력받도록 수정하라.
+
+겜블링 게임에 참여할 선수 숫자>>3
+1번째 선수 이름>>황
+2번째 선수 이름>>이
+3번째 선수 이름>>김
+[황]:
+	2  3  3  아쉽군요!
+[이]:
+	1  2  2  아쉽군요!
+[김]:
+	2  2  3  아쉽군요!
+[황]:
+	3  2  2  아쉽군요!
+[이]:
+	1  1  3  아쉽군요!
+[김]:
+	2  2  1  아쉽군요!
+[황]:
+	2  2  2  황님이 이겼습니다!
+
+-----------------------------------------------------------------------
+package java_saba;
+
+import java.util.Scanner;
+
+class Game {
+	int person;
+	int[] num;
+	String[] nameArr;
+	
+	public Game(int person){
+		nameArr = new String[person];
+		num = new int[3];
+		this.person = person;
+	}
+	
+	public void input() {
+		Scanner sc = new Scanner(System.in);
+		for(int i = 0; i<person; i++) {
+			System.out.println((i+1) + "번째 선수 이름>>");
+			nameArr[i] = sc.next();
+		}
+	}
+	public void print() {
+		int p = 0;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			String enter = sc.nextLine();
+			for (int i = 0; i < num.length; i++) {
+				num[i] = (int) (Math.random() * 3) + 1;
+			}
+			System.out.print("[" + nameArr[p] + "]\n");
+			boolean a = false;
+			for (int i = 1; i < num.length; i++) {
+				if (num[i - 1] != num[i]) {
+					a = true;
+				}
+			}
+			if (p == person - 1) {
+				p = 0;
+			} else {
+				p++;
+			}
+			if (a) {
+				for (int e : num) {
+					System.out.print(e + " ");
+				}
+				System.out.println("아쉽군요!");
+			} else {
+				for (int e : num) {
+					System.out.print(e + " ");
+				}
+				System.out.println("이겼습니다!");
+				break;
+			}
+
+		}
+	}
+	
+}
+
+public class GamblingGameMain {
+
+	public static void main(String[] args) {
+
+		Game person = new Game(3);
+		person.input();
+		person.print();
+
+	}
+}
+
+
+
+7.다음을 만족하는 클래스 Employee를 작성하시오
+
+(8번문제부터는 이것과 관련된 문제입니다).
+
+- 클래스 Employee(직원)은 클래스 Regular(정규직)와 Temporary(비정규직)의 상위 클래스
+
+- 필드: 이름, 나이, 주소, 부서, 월급 정보를 필드로 선언
+
+- 생성자 : 이름, 나이, 주소, 부서를 지정하는 생성자 정의
+
+-메소드 printInfo() : 인자는 없고 자신의 필드 이름, 나이, 주소, 부서를 출력
+
+------------------------------------------------------------------------------------------
+class Employee{
+	private String name;
+	private int age;
+	private String address;
+	private String department;
+	private int salary;
+
+	public Employee(String name, int age, String address, String department) {
+		this.address = address;
+		this.age = age;
+		this.name = name;
+		this.department = department;
+	}
+	public void printInfo() {
+		System.out.println("이름 : " + name);
+		System.out.println("나이 : " + age);
+		System.out.println("주소 : " + address);
+		System.out.println("부서 : " + department);
+	}
+}
+
+class Regular extends Employee{
+
+	public Regular(String name, int age, String address, String department) {//위의 데이터 멤버,함수를 받으므로 이것이 필요하다.
+		super(name, age, address, department);
+		
+	}
+}
+class Temporary extends Employee{
+
+	public Temporary(String name, int age, String address, String department) {
+		super(name, age, address, department);
+	}
+}
+public class EmployeeMain {
+
+	public static void main(String[] args) {
+
+		Employee kim = new Regular("kim",29,"서울","개발");
+		kim.printInfo();
+	}
+}
+
+
+
+8. 다음을 만족하는 클래스 Regular를 작성하시오.
+
+- 클래스 Regular는 위에서 구현된 클래스 Employee의 하위 클래스
+
+- 생성자 : 이름, 나이, 주소, 부서를 지정하는 상위 생성자 호출
+
+- Setter : 월급 정보 필드를 지정
+
+- 메소드 printInfo() : 인자는 없고 "정규직"이라는 정보와 월급을 출력
+--------------------------------------------------------------------------------
+package java_saba;
+
+class Employee{
+	private String name;
+	private int age;
+	private String address;
+	private String department;
+	private int salary;
+
+	public Employee(String name, int age, String address, String department) {
+		this.address = address;
+		this.age = age;
+		this.name = name;
+		this.department = department;
+	}
+	public void printInfo() {
+		System.out.println("이름 : " + name);
+		System.out.println("나이 : " + age);
+		System.out.println("주소 : " + address);
+		System.out.println("부서 : " + department);
+	}
+	
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	
+	public int getSalary() {
+		return salary;
+	}
+	
+}
+
+class Regular extends Employee{
+
+	public Regular(String name, int age, String address, String department) {//위의 데이터 멤버,함수를 받으므로 이것이 필요하다.
+		super(name, age, address, department);
+	}
+	
+	public void printInfo() {
+		super.printInfo();
+		System.out.println("정규직");
+		System.out.println("월급 : " + super.getSalary());
+		
+	}
+}
+class Temporary extends Employee{
+
+	public Temporary(String name, int age, String address, String department) {
+		super(name, age, address, department);
+	}
+	public void printInfo() {
+		super.printInfo();
+		System.out.println("비정규직");
+		System.out.println("월급 : " + super.getSalary());
+	}
+}
+
+public class EmployeeMain {
+
+	public static void main(String[] args) {
+
+		Employee kim = new Regular("kim",29,"서울","개발");
+		kim.setSalary(1000);
+		kim.printInfo();
+	}
+}
+
+
+
+9. 장바구니 담기
+package java_saba;
+
+class Tv extends Product {
+	Tv() {
+		super(100);
+	}
+
+	public String toString() {
+		return "Tv";
+	}
+}
+
+class Computer extends Product {
+	Computer() {
+		super(200);
+	}
+
+	public String toString() {
+		return "Computer";
+	}
+}
+
+class Audio extends Product {
+	Audio() {
+		super(50);
+	}
+
+	public String toString() {
+		return "Audio";
+	}
+}
+
+class Product {
+	int price; // 제품의 가격
+
+	Product(int price) {
+		this.price = price;
+	}
+}
+public class Buyer {
+	int money = 1000;
+	Product[] cart = new Product[3];
+	int i = 0;//아이템의 숫자
+
+	public void buy(Product p) {
+		if (money < p.price) {
+			System.out.println("잔액이 부족하여 "+p+"을/를 살 수 없습니다.");
+			return;// 왜 여기 리턴이 오는가?
+		} else {
+			money -= p.price;
+			add(p);
+		}
+	}
+
+	public void add(Product p) {
+		if (i >= cart.length) {
+			Product[] cart2 = new Product[cart.length * 2];
+			System.arraycopy(cart, 0, cart2, 0, cart.length);
+			//이거를 기억을 잘해둡시다.!!내가 이거를 기억을 못 했고
+			cart = cart2;
+		}	
+		cart[i] =p;//그렇네 카드에 목록을 추가를 해야 하는데 이거를 안해줬네
+		i++;//여기서 카드목록에 아이템을 집어 넣는 것을 생각을 못 했고 
+	//여기서 카드에 목록을 추가하는 것이 생각보다 생각이 안났다.
+	}
+
+	public void summary() {
+
+		System.out.print("구입한 물건 :");
+		for (int i = 0; i < cart.length; i++) {
+			System.out.print(cart[i]+",");
+		}
+		System.out.println();
+		int sum = 0;
+		for (int i = 0; i < cart.length; i++) {
+			if (cart[i] == null)
+				break;
+//			String itemList = "";
+//			itemList += cart[i] + ","; 이렇게 하는 것이 더 간단하고 좋다.
+			sum += cart[i].price;
+		}
+//		System.out.println("구입한 물건 :" + itemList);
+		System.out.println("사용한 금액 :" + sum);
+		System.out.println("남은 금액 :" + money);
+	}
+
+	public static void main(String[] args) {
+		Buyer b = new Buyer();
+		b.buy(new Tv());
+		b.buy(new Computer());
+		b.buy(new Tv());
+		b.buy(new Audio());
+		b.buy(new Computer());
+		b.buy(new Computer());
+		b.buy(new Computer());
+		b.summary();
+
+	}
+}
+
