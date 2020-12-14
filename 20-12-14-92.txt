@@ -46,8 +46,6 @@ class Simple{
 }
 
 4.연습문제 7-22 번을 푸시오.
-package 정리;
-
 abstract class Shape {
 	Point p;
 
@@ -125,11 +123,6 @@ public class TestMain2 {
 }
 
 5.연습문제 7-23 번을 푸시오.
-package 오늘;
-
-import 정리.Circle;
-import 정리.Rectangle;
-import 정리.Shape;
 
 abstract class Shape {
 	Point p;
@@ -276,7 +269,7 @@ class LPrinterDriver implements Printable{
 	}
 }
 
-public class TestMain2 {
+public class TestMain {
 
 	public static void main(String[] args) {
 		String myDoc = "This is a report about...";
