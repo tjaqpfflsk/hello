@@ -1,0 +1,361 @@
+﻿1.throws 에 대하여 설명하시오.
+예외의 처리를 자신을 호출한 부분으로 넘기는 것을 말한다.
+public static void main(String[] args) {
+	try {
+		md1();
+	}
+	catch(IOException e) {
+		e.printStackTrace();
+	}
+}
+public static void md1() throws IOException { // IOException 예외 넘긴다고 명시 !
+	md2();
+} 
+public static void md2() throws IOException {// IOException 예외 넘긴다고 명시 !
+	Path file = Paths.get("C:\\javastudy\\Simple.txt");
+	BufferedWriter writer = null;
+	writer = Files.newBufferedWriter(file); // IOException 발생 가능
+	writer.write('A'); // IOException 발생 가능
+	writer.write('Z'); // IOException 발생 가능
+	if(writer != null)
+		writer.close(); // IOException 발생 가능
+}
+이 경우 main 메소드가 함수를 호출하고 md1함수로 가니 함수 md2를 호출한다. 
+md2함수가 실행되고 그 곳에 오류가 생기면 오류처리를 md1으로 넘기게 되고 md1은 main으로 넘겨서
+main에 catch가 잡아 보여 준다.
+
+=========================================================================
+2.아래가 컴파일 에러가 나는 이유에 대하여 설명하시오.
+try {
+        	int num = 6 / 0;
+} catch (Exception e) {
+	e.printStackTrace();
+} catch (InputMismatchException e) {
+	e.printStackTrace();
+}
+catch에서 예외 처리하는 부분이 여러개일 경우 위에서 부터 순차적으로 내려오면서 실행하게 되는데 
+Exception은 예외 처리에서 최상이기 때문에 맨 먼저 적는 경우 아래의 예외 처리가 실행하지 않는다는 것을
+알려주는 것이다. 그렇기 때문에 최상인 Exception은 맨 아래에 와야 한다.
+
+=======================================================================
+3.try with resource 에 대하여 설명하시오.(졸았을까? 잘 생각이 안나는군!!)
+ 클래스 중에는 사용한 후에 꼭 닫아 주어야 하는 것들이 있다. 그래야 사용했던 자원(resources)이 반환되기 때문이다.
+ 그래서 finally 를 써주어서 예외 발생 여부와 관계없이 항상 수행되어야 하는 문장을 넣는 블럭을 만들어 주기도
+하지만 코드가 복잡해지는 등 여러가지 문제를 해결하기 위해 간단히 사용한다. 
+  그리고  try - with - resources 문에 의해 자동으로 객체 close()호출될 수 있으려면, 클래스가 AutoCloseable 이라는
+인터페이스를 구현하는 것이다.
+
+===========================================================================
+4.equals 함수에 대하여 설명하시오.(F3눌러서 들어가 보기!!)
+ 인스턴스의 내용 비교를 위한 기능을 equals 메소드에 담아 정의한다. equals 는 Object 클래스의 메소드이다.
+ 객체의 주소에 찾아가 값을 비교한다.
+
+===========================================================================
+5. 과일, 사과, 배, 포도를 표현한 클래스를 만들고 이들 간의 관계를 고려하여 하나의 클래스를
+ 추상 클래스로 만들어 메소드 print()를 구현하고 다음과 같은 소스와 결과가 나오도록 클래스를 작성하시오.
+
+- 소스
+
+Fruit fAry[] = {new Grape(), new Apple(), new Pear());// 이거는 배열을 생성하라는 것이군
+
+for(Fruit f : fAry)// 뭘 포문을 돌려야 하는 것인가?
+
+f.print();//배열을 프린트 하란 말이구만
+
+-  결과
+
+나는 포도이다.
+나는 사과이다.
+나는 배이다.
+----------------------------------------------------------------------------------
+abstract class Fruit{
+	abstract String print();
+}//class end
+class Grape extends Fruit{
+	@Override
+	public String print() {
+		return "나는 포도이다.";
+	}
+}//class end
+class Apple extends Fruit{
+	@Override
+	public String print() {
+		return "나는 사과이다.";
+	}
+}//class end
+class Pear extends Fruit{
+	@Override
+	public String print() {
+		return "나는 배이다.";
+	}
+}//class end
+public class FruitMain {
+
+	public static void main(String[] args) {
+		Fruit fAry[] = {new Grape(), new Apple(), new Pear()}; //이거는 배열 생성 하는 것이고
+		for(Fruit f : fAry) { //뭘 포문을 돌려야 하는 것인가?
+		System.out.println(f.print()); 
+		}//배열을 프린트 하란 말이구만
+	}//main end
+}//class end
+// 아주 간단히 만들었는데 뭔가 부족한 것이 있는지 꼭 넣어야 하는 부분이 있는지는 잘 모르겠다.
+
+=========================================================================
+6. 다음 조건을 만족하도록 클래스 Person과 Student를 작성하시오.
+- 클래스 Person
+* 필드 : 이름, 나이, 주소 선언
+- 클래스 Student
+* 필드 : 학교명, 학과, 학번, 8개 평균평점을 저장할 배열로 선언
+* 생성자 : 학교명, 학과, 학번 지정
+* 메소드 average() : 8개 학기 평균평점의 평균을 반환
+- 클레스 Person과 Student 프로그램 테스트 프로그램의 결과 : 8개 학기의 평균평점은 표준입력으로 받도록한다.
+이름 : 김다정
+나이 : 20
+
+주소 : 서울시 관악구
+학교 : 동양서울대학교
+학과 : 전산정보학과
+학번 : 20132222
+
+----------------------------------------
+
+8학기 학점을 순서대로 입력하세요
+
+1학기 학점  → 3.37
+2학기 학점  → 3.89
+3학기 학점  → 4.35
+4학기 학점  → 3.76
+5학기 학점  → 3.89
+6학기 학점  → 4.26
+7학기 학점  → 4.89
+8학기 학점  → 3.89 
+
+----------------------------------------
+
+8학기 총 평균 평점은 4.0375점입니다.
+
+---------------------------------------------------------------------------------------------------
+import java.util.Scanner;
+
+class Person{
+
+	private String name;
+	private int age;
+	private String address;
+	public Person() {
+		this.name = name;
+		this.address = address;
+		this.age = age;
+	}
+}
+class Student extends Person{
+	private String university;
+	private String major;
+	private int uniNum;
+	private int avg;
+	public Student() {
+		this.uniNum = uniNum;
+		this.university = university;
+		this.major = major;
+	}
+	public String average(double [] grade) {
+		int sum = 0;
+		for(double num : grade) {
+			sum += num;
+		}
+			return "8학기 총 평균 평점은 "+(sum/8)+"점입니다.";
+	}
+}
+class Test extends Student{
+//여기를 어떻게 해야하는지 모르겠다. 배열 구성이 좀 어렵다.
+}
+
+public class GradeMain {
+
+	public static void main(String[] args) {
+		try {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("이름 : ");
+		String name = sc.next();
+		System.out.print("나이 : ");
+		int age = sc.nextInt();
+		System.out.println();
+		
+		System.out.print("주소 : ");
+		String address = sc.next();
+		System.out.print("학교 : ");
+		String university = sc.next();
+		System.out.print("학과 : ");
+		String major = sc.next();
+		System.out.println("학번 : ");
+		int uniNum = sc.nextInt();
+		
+		System.out.println("------------------------------");
+		
+		System.out.println("8학기 학점을 순서대로 입력하세요");
+		double [] grade = new double[8];
+		for(int i = 0 ; i < grade.length; i++) {
+			System.out.print(i+1+"학기 학점 → ");
+			grade[i] = sc.nextDouble();
+		}
+		System.out.println();
+		System.out.println("------------------------------");
+		Student student = new Student();
+		System.out.println(student.average(grade));
+		sc.close();
+		}
+		catch(Exception e) {
+			System.out.println("잘 못된 입력으로 종료됩니다.");
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+===================================================================
+7.다음은 도형의 구성을 묘사하는 인터페이스이다.
+
+interface Shape {
+   final double PI = 3.14; // 상수
+   void draw(); // 도형을 그리는 추상 메소드
+   double getArea(); // 도형의 면적을 리턴하는 추상 메소드
+   default public void redraw() { // 디폴트 메소드
+      System.out.print("--- 다시 그립니다.");
+      draw();
+   }
+}
+다음 main() 메소드와 실행 결과를 참고하여, 인터페이스 Shape을 구현한 클래스 Circle를 작성하고 전체 프로그램을 완성하라.
+
+public static void main(String[] args) {
+   Shape donut = new Circle(10); // 반지름이 10인 원 객체
+   donut.redraw();
+   System.out.println("면적은 "+ donut.getArea());
+}
+---------------------------------------------------------------------------------------------------
+interface Shape {
+	final double PI = 3.14; // 상수
+	void draw(); // 도형을 그리는 추상 메소드
+	double getArea(); // 도형의 면적을 리턴하는 추상 메소드
+	default public void redraw() { // 디폴트 메소드
+		System.out.print("--- 다시 그립니다.");
+		draw();
+	}
+}
+
+class Circle implements Shape{
+	private int radius;
+	public Circle(int radius){
+		this.radius = radius;
+	}
+	@Override
+	public void draw() {//도형을 그리는 추상 메소드
+		System.out.println(" 반지름이 "+radius+"인 원입니다.");
+	}
+	@Override
+	public double getArea() {// 도형의 면적을 리턴하는 추상 메소드
+		return radius * radius * PI;
+	}
+}
+public class ShapeMain {
+
+	public static void main(String[] args) {
+		   Shape donut = new Circle(10); // 반지름이 10인 원 객체
+		   donut.redraw();
+		   System.out.println("면적은 "+ donut.getArea());
+	}
+}
+//머리 쥐어짜서 결과를 내긴 하는데 정답인지 모르겠다.
+
+==========================================================================
+8.
+다음 main() 메소드와 실행 결과를 참고하여, 문제 7의 Shape 인터페이스를 구현한 클래스 Oval, 
+Rect를 추가 작성하고 전체 프로그램을 완성하라.
+
+public static void main(String[] args) {
+   Shape[] list = new Shape[3]; // Shape을 상속받은 클래스 객체의 레퍼런스 배열
+   list[0] = new Circle(10); // 반지름이 10인 원 객체
+   list[1] = new Oval(20, 30); // 20x30 사각형에 내접하는 타원
+   list[2] = new Rect(10, 40); // 10x40 크기의 사각형
+   for(int i=0; i<list.length; i++) list[i].redraw();
+   for(int i=0; i<list.length; i++) System.out.println("면적은 "+ list[i].getArea());
+}
+--- 다시 그립니다.반지름이 10인 원입니다.
+--- 다시 그립니다.20x30에 내접하는 타원입니다.
+--- 다시 그립니다.10x40크기의 사각형 입니다.
+면적은 314.0
+면적은 1884.0000000000002
+면적은 400.0
+
+------------------------------------------------------------------------------------------------------
+interface Shape {
+	final double PI = 3.14; // 상수
+	void draw(); // 도형을 그리는 추상 메소드
+	double getArea(); // 도형의 면적을 리턴하는 추상 메소드
+	default public void redraw() { // 디폴트 메소드
+		System.out.print("--- 다시 그립니다.");
+		draw();
+	}
+}
+
+class Circle implements Shape{
+	private int radius;
+	public Circle(int radius){
+		this.radius = radius;
+	}
+	@Override
+	public void draw() {//도형을 그리는 추상 메소드
+		System.out.println("반지름이 "+radius+"인 원입니다.");
+	}
+	@Override
+	public double getArea() {// 도형의 면적을 리턴하는 추상 메소드
+		return radius * radius * PI;
+	}
+}
+class Oval implements Shape{
+	private int width;
+	private int height;
+	public Oval(int width, int height){
+		this.width = width;
+		this.height = height;
+	}
+	@Override
+	public void draw() {//도형을 그리는 추상 메소드
+		System.out.println(width +"x"+height+"사각형에 내접하는 타원입니다.");
+	}
+	@Override
+	public double getArea() {// 도형의 면적을 리턴하는 추상 메소드
+		return width * height * PI;
+	}
+}
+class Rect implements Shape{
+	private int width;
+	private int height;
+	public Rect(int width, int height){
+		this.width = width;
+		this.height = height;
+	}
+	@Override
+	public void draw() {//도형을 그리는 추상 메소드
+		System.out.println(width+"x"+height+"크기의 사각형 입니다.");
+	}
+	@Override
+	public double getArea() {// 도형의 면적을 리턴하는 추상 메소드
+		return width * height;
+	}
+}
+
+public class ShapeMain {
+
+	public static void main(String[] args) {
+
+		 Shape[] list = new Shape[3]; // Shape을 상속받은 클래스 객체의 레퍼런스 배열
+		   list[0] = new Circle(10); // 반지름이 10인 원 객체
+		   list[1] = new Oval(20, 30); // 20x30 사각형에 내접하는 타원
+		   list[2] = new Rect(10, 40); // 10x40 크기의 사각형
+		   for(int i=0; i<list.length; i++) list[i].redraw();
+		   for(int i=0; i<list.length; i++) System.out.println("면적은 "+ list[i].getArea());
+
+	}
+}
