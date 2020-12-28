@@ -1,0 +1,12 @@
+﻿1.html 이란 무엇인가?
+2.css 란 무엇인가?
+3.아래의 태그에 대하여 설명하시오.
+<del>
+<ins>
+<span>
+4.block 태그와 non block 태그에 대하여 설며하시오.
+5.get 방식과 post 방식에 대하여 설명하시오.
+6.컨텍스트 패스란 무엇인가?
+7.아래의 객체에 대하여 설명하시오.
+HttpServletRequest
+HttpServletReponse
