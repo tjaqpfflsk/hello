@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-05T07:29:38.709Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36" etag="teOmvEnhJhpaEjn7Y_M_" version="14.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-05T07:30:07.659Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36" etag="0adkp7IDm77YM77_cLlY" version="14.2.9" type="github">
   <diagram id="kPX7AIdVBTsW6gZkw2J3" name="Page-1">
     <mxGraphModel dx="2220" dy="885" grid="1" gridSize="8" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -166,7 +166,7 @@
         <mxCell id="O8_luUPCBRWgNtUx3cXp-99" value="n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="720" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="O8_luUPCBRWgNtUx3cXp-105" value="&lt;u&gt;주유기 번호&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="O8_luUPCBRWgNtUx3cXp-105" value="&lt;u&gt;단말번호&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry y="515" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="O8_luUPCBRWgNtUx3cXp-106" value="" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="O8_luUPCBRWgNtUx3cXp-105" parent="1" source="O8_luUPCBRWgNtUx3cXp-92">
@@ -220,7 +220,7 @@
             <mxPoint x="597" y="944" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="O8_luUPCBRWgNtUx3cXp-121" value="사원번호" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="O8_luUPCBRWgNtUx3cXp-121" value="&lt;u&gt;사원번호&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="290" y="940" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="O8_luUPCBRWgNtUx3cXp-122" value="" style="endArrow=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="O8_luUPCBRWgNtUx3cXp-121" parent="1" target="O8_luUPCBRWgNtUx3cXp-127">
